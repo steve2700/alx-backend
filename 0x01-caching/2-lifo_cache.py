@@ -1,35 +1,34 @@
-#!/usr/bin/env/python3
-"""LIFO Caching"""
-
-
+#!/usr/bion/env/python3
+"""LIFO CACHING"""
 BaseCaching = __import__('base_caching').BaseCaching
 
 
 class LIFOCache(BaseCaching):
-    """a class LIFOCache that inherits from
-    BaseCaching and is a caching system:
+    """A class LIFOCache that inherits from
+    BaseCaching and is a caching system
     """
 
     def __init__(self):
-        """initialize"""
+        """Initialize"""
         super().__init__()
 
     def put(self, key, item):
-        """Must assign to the dictionary self.cache_data
-            the item value for the key key.
-            If key or item is None,
-            this method should not do anything.
-            If the number of items in self.cache_data is
-            higher that BaseCaching.MAX_ITEMS:
-            you must discard the last item
-            put in cache (LIFO algorithm)
-            you must print DISCARD: with the key discarded
-            and following by a new line
-            """
+        """Assign the item value to
+        the key in self.cache_data.
+        If key or item is None, do nothing.
+        If the number of items in
+        self.cache_data is higher
+        than BaseCaching.MAX_ITEMS,
+        remove the last item (LIFO algorithm)
+        and print DISCARD: with
+        the key discarded and a new line.
+        """
         if key is None or item is None:
             return
-        # Get the last key (most recently added item)
-            last_key = next(reversed(self.cache_data))
+
+        if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
+            # Get the last key
+            last_key = list(self.cache_data.keys())[-1]
             # Remove the last item (LIFO)
             del self.cache_data[last_key]
             print("DISCARD:", last_key)
@@ -37,10 +36,8 @@ class LIFOCache(BaseCaching):
         self.cache_data[key] = item  # Add the new item to the cache
 
     def get(self, key):
-        """Must return the value in self.cache_data
-        linked to key.
-        If key is None or if the key doesn’t exis
-        t in self.cache_data, return None.
+        """Retrieve the value from self.cache_data linked to the key.
+        If key is None or doesn't exist in self.cache_data, return None.
         """
         if key is None or key not in self.cache_data:
             return None
