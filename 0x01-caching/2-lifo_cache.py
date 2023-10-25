@@ -13,7 +13,6 @@ class LIFOCache(BaseCaching):
     def __init__(self):
         """initialize"""
         super().__init__()
-        self.cache_data = {}
 
     def put(self, key, item):
         """Must assign to the dictionary self.cache_data
